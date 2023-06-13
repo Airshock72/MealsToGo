@@ -31,6 +31,8 @@ const Settings = () => (
 );
 
 const screenOptions = ({ route }) => ({
+  tabBarActiveTintColor: "red",
+  tabBarInactiveTintColor: "gray",
   headerShown: false,
   tabBarIcon: ({ color, size }) => {
     const iconName = TAB_ICON[route.name];
@@ -55,13 +57,7 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={screenOptions}
-            tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
-            }}
-          >
+          <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen name="Restaurant" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Map} />
             <Tab.Screen name="Settings" component={Settings} />
