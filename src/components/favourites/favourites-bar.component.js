@@ -26,10 +26,7 @@ export const FavouritesBar = ({ favourites, onNavigate }) => {
               <TouchableOpacity
                 onPress={() => onNavigate("RestaurantDetail", { restaurant })}
               >
-                <CompactRestaurantInfo
-                  restaurant={restaurant}
-                  isRestaurantScreen={false}
-                />
+                <CompactRestaurantInfo restaurant={restaurant} />
               </TouchableOpacity>
             </Spacer>
           );

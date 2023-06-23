@@ -24,15 +24,8 @@ const Item = styled.View`
 
 const isAndroid = Platform.OS === "android";
 
-export const CompactRestaurantInfo = ({
-  restaurant,
-  isRestaurantScreen = true,
-}) => {
-  const Image = isRestaurantScreen
-    ? isAndroid
-      ? CompactWebView
-      : CompactImage
-    : CompactImage;
+export const CompactRestaurantInfo = ({ restaurant, isMap }) => {
+  const Image = isAndroid && isMap ? CompactWebView : CompactImage;
   return (
     <Item>
       <Image source={{ uri: restaurant.photos[0] }} />
