@@ -1,4 +1,4 @@
-import { StatusBar, Text } from "react-native";
+import { StatusBar } from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-view";
 import { ThemeProvider } from "styled-components";
