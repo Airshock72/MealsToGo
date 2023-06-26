@@ -1,5 +1,5 @@
 import { StatusBar } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-view";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./src/infrastructure/theme";
@@ -12,7 +12,7 @@ import { Navigation } from "./src/infrastructure/navigation";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDX2FA_NsSc9IiKfn_oc-DkquMcLt6P6S8",
@@ -27,23 +27,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const auth = firebase.auth();
-
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    setTimeout(
-      auth
-        .signInWithEmailAndPassword("email@gmail.com", "test123")
-        .then((user) => {
-          setIsAuthenticated(true);
-        })
-        .catch((err) => console.log(err)),
-      2000
-    );
-  }, []);
-
   const [oswaldLoaded] = useFonts({
     Oswald_400Regular,
   });
@@ -56,20 +40,18 @@ export default function App() {
     return null;
   }
 
-  if (!isAuthenticated) {
-    return null;
-  }
-
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
     </SafeAreaProvider>

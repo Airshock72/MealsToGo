@@ -1,4 +1,3 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import { Text } from "react-native";
@@ -33,12 +32,10 @@ const Settings = () => (
 
 export const AppNavigation = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Settings" component={Settings} />
+    </Tab.Navigator>
   );
 };
