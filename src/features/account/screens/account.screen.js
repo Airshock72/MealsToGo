@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   AccountBackground,
   AccountContainer,
@@ -7,8 +7,10 @@ import {
   Title,
 } from "../components/account.styles";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const AccountScreen = ({ navigation }) => {
+  const { setError } = useContext(AuthenticationContext);
   return (
     <AccountBackground>
       <AccountCover />
@@ -17,7 +19,10 @@ export const AccountScreen = ({ navigation }) => {
         <AuthButton
           icon="lock-open-outline"
           mode="contained"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => {
+            setError(null);
+            navigation.navigate("Login");
+          }}
         >
           Login
         </AuthButton>
@@ -25,7 +30,10 @@ export const AccountScreen = ({ navigation }) => {
           <AuthButton
             icon="email"
             mode="contained"
-            onPress={() => navigation.navigate("Register")}
+            onPress={() => {
+              setError(null);
+              navigation.navigate("Register");
+            }}
           >
             Register
           </AuthButton>

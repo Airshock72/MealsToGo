@@ -41,6 +41,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     setIsLoading(true);
     if (password !== repeatedPassword) {
       setError("Error: Passwords do not match!");
+      return;
     }
     createUserWithEmailAndPassword(auth, email, password)
       .then((loginUser) => {
@@ -70,6 +71,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin,
         onRegister,
         onLogout,
+        setError,
       }}
     >
       {children}
