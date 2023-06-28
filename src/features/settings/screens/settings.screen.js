@@ -13,6 +13,7 @@ const SettingsItem = styled(List.Item)`
 
 const AvatarContainer = styled.View`
   align-items: center;
+  margin-top: ${(props) => props.theme.space[1]};
 `;
 
 export const SettingsScreen = ({ navigation }) => {
